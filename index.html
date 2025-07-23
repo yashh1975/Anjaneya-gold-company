@@ -150,122 +150,10 @@
             transform: translateY(0) scale(1);
         }
 
-        /* Chatbot specific styles */
-        .chat-container {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            width: 350px;
-            height: 450px;
-            background-color: #fff;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-            display: flex;
-            flex-direction: column;
-            overflow: hidden;
-            z-index: 1002; /* Increased z-index to be above FABs */
-            transform: scale(0); /* Hidden by default */
-            transform-origin: bottom right;
-            transition: transform 0.2s ease-out;
-        }
-        .chat-container.open {
-            transform: scale(1);
-        }
-        .chat-header {
-            background: var(--gradient-dark-red); /* Darker red gradient */
-            color: white;
-            padding: 15px;
-            border-top-left-radius: 15px;
-            border-top-right-radius: 15px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-family: 'Cinzel', serif;
-            font-size: 1.25rem;
-        }
-        .chat-body {
-            flex-grow: 1;
-            padding: 15px;
-            overflow-y: auto;
-            background-color: #f0f2f5;
-        }
-        .chat-message {
-            margin-bottom: 10px;
-            padding: 8px 12px;
-            border-radius: 10px;
-            max-width: 80%;
-            word-wrap: break-word;
-        }
-        .chat-message.user {
-            background-color: #ffe0b2; /* Light orange/peach for user */
-            align-self: flex-end;
-            margin-left: auto;
-        }
-        .chat-message.ai {
-            background-color: #e0f7fa; /* Light blue for AI */
-            align-self: flex-start;
-            margin-right: auto;
-        }
-        .chat-input-area {
-            display: flex;
-            padding: 10px 15px;
-            border-top: 1px solid #eee;
-            background-color: #fff;
-        }
-        .chat-input-area input {
-            flex-grow: 1;
-            border: 1px solid #ddd;
-            border-radius: 20px;
-            padding: 8px 15px;
-            margin-right: 10px;
-            outline: none;
-        }
-        .chat-input-area button {
-            background: var(--gradient-gold-to-bronze);
-            color: white;
-            border: none;
-            border-radius: 20px;
-            padding: 8px 15px;
-            cursor: pointer;
-            transition: background-color 0.2s ease;
-        }
-        .chat-input-area button:hover {
-            background: linear-gradient(to right, var(--color-light-gold), var(--color-dark-gold));
-        }
-        .chat-loading {
-            text-align: center;
-            font-style: italic;
-            color: #777;
-            margin-top: 10px;
-        }
-        /* Floating Chat Button */
-        .fab-chat {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background: var(--gradient-dark-red); /* Darker red gradient */
-            color: white;
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 1.8rem;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-            cursor: pointer;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-            z-index: 1001;
-        }
-        .fab-chat:hover {
-            transform: scale(1.1);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
-        }
-
         /* WhatsApp FAB positioning */
         .fab-whatsapp {
             position: fixed;
-            bottom: 90px; /* Adjust this value to position it above the chat FAB */
+            bottom: 20px; /* Adjusted to be the only FAB at the bottom */
             right: 20px;
             background-color: #25D366; /* WhatsApp green */
             color: white;
@@ -1122,24 +1010,6 @@
         <i class="fab fa-whatsapp"></i>
     </a>
 
-    <div id="chat-fab" class="fab-chat">
-        <i class="fas fa-comments"></i>
-    </div>
-
-    <div id="chat-modal" class="chat-container">
-        <div class="chat-header">
-            ✨Gold Expert Chat
-            <button id="close-chat" class="text-white text-xl">&times;</button>
-        </div>
-        <div id="chat-body" class="chat-body flex flex-col">
-            <div class="chat-message ai">Hello! I'm your Anjaneya Gold Expert. How can I assist you today regarding selling gold or releasing pledged gold?</div>
-            </div>
-        <div class="chat-input-area">
-            <input type="text" id="chat-input" placeholder="Ask me anything...">
-            <button id="send-chat-btn">Send</button>
-        </div>
-    </div>
-
     <div id="privacy-policy-modal" class="policy-modal-overlay">
         <div class="policy-modal-content">
             <span class="policy-modal-close" id="close-privacy-policy">&times;</span>
@@ -1316,95 +1186,6 @@
         // Initialize carousel on load
         updateCarousel();
 
-
-        // Chatbot Logic
-        const chatFab = document.getElementById('chat-fab');
-        const chatModal = document.getElementById('chat-modal');
-        const closeChatBtn = document.getElementById('close-chat');
-        const chatBody = document.getElementById('chat-body');
-        const chatInput = document.getElementById('chat-input');
-        const sendChatBtn = document.getElementById('send-chat-btn');
-
-        let chatHistory = [{ role: "model", parts: [{ text: "Hello! I'm your Anjaneya Gold Expert. How can I assist you today regarding selling gold or releasing pledged gold?" }] }];
-
-        chatFab.addEventListener('click', () => {
-            chatModal.classList.add('open');
-        });
-
-        closeChatBtn.addEventListener('click', () => {
-            chatModal.classList.remove('open');
-        });
-
-        sendChatBtn.addEventListener('click', sendMessage);
-        chatInput.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') {
-                sendMessage();
-            }
-        });
-
-        async function sendMessage() {
-            const userMessage = chatInput.value.trim();
-            if (userMessage === '') return;
-
-            // Display user message
-            appendMessage(userMessage, 'user');
-            chatInput.value = '';
-            chatBody.scrollTop = chatBody.scrollHeight; // Scroll to bottom
-            
-            // Add loading indicator
-            const loadingMessage = document.createElement('div');
-            loadingMessage.classList.add('chat-loading');
-            loadingMessage.textContent = 'Thinking...';
-            chatBody.appendChild(loadingMessage);
-            chatBody.scrollTop = chatBody.scrollHeight; // Scroll to bottom
-
-            // Prepare chat history for LLM
-            chatHistory.push({ role: "user", parts: [{ text: userMessage }] });
-
-            const payload = {
-                contents: [{ role: "user", parts: [{ text: userMessage }] }] // Removed the detailed prompt to avoid repetition and allow more dynamic responses
-            };
-
-            // IMPORTANT: Replace "YOUR_GEMINI_API_KEY_HERE" with your actual Gemini API key for local execution.
-            // When running in the Canvas environment, this variable is automatically populated.
-            const apiKey = "AIzaSyBOYljb8KdhO3E8XzPjdhQd8oyboStS0jY"; 
-            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
-
-            try {
-                const response = await fetch(apiUrl, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(payload)
-                });
-                const result = await response.json();
-
-                // Remove loading indicator
-                chatBody.removeChild(loadingMessage);
-
-                if (result.candidates && result.candidates.length > 0 &&
-                    result.candidates[0].content && result.candidates[0].content.parts &&
-                    result.candidates[0].content.parts.length > 0) {
-                    const aiResponse = result.candidates[0].content.parts[0].text;
-                    appendMessage(aiResponse, 'ai');
-                    chatHistory.push({ role: "model", parts: [{ text: aiResponse }] });
-                } else {
-                    appendMessage("Sorry, I couldn't get a response. Please try again.", 'ai');
-                }
-            } catch (error) {
-                console.error('Error calling Gemini API:', error);
-                // Remove loading indicator
-                chatBody.removeChild(loadingMessage);
-                appendMessage("An error occurred while fetching the response. Please try again later. Check your API key and network connection.", 'ai');
-            }
-            chatBody.scrollTop = chatBody.scrollHeight; // Scroll to bottom after AI response
-        }
-
-        function appendMessage(text, sender) {
-            const messageElement = document.createElement('div');
-            messageElement.classList.add('chat-message', sender);
-            messageElement.textContent = text;
-            chatBody.appendChild(messageElement);
-        }
 
         // Policy Modal Logic
         const privacyPolicyLink = document.getElementById('privacy-policy-link');
