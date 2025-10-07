@@ -760,39 +760,29 @@
     <!-- Updated Gold Rate Section with Auto-Scrolling -->
     <section id="gold-rates" class="py-20 bg-red-50">
         <div class="container mx-auto px-4 max-w-xl">
-            <h2 class="text-4xl font-bold text-center mb-12 text-deep-red fade-in">Current Gold Rates</h2>
-            <div class="gold-rate-card fade-in card-hover-effect">
-                <div id="gold-rate-carousel-container" class="gold-rate-carousel-container">
-                    <!-- Duplicated items for seamless scrolling -->
-                    <div class="gold-rate-item">
-                        <p class="gold-rate-label">22 CARAT GOLD</p>
-                        <p id="gold-rate-22ct-value" class="gold-rate-value">₹ 0000/-</p>
-                    </div>
-                    <div class="gold-rate-item">
-                        <p class="gold-rate-label">24 CARAT GOLD</p>
-                        <p id="gold-rate-24ct-value" class="gold-rate-value">₹ 0000/-</p>
-                    </div>
-                    <!-- Duplicates for continuous loop -->
-                    <div class="gold-rate-item">
-                        <p class="gold-rate-label">22 CARAT GOLD</p>
-                        <p id="gold-rate-22ct-value-duplicate" class="gold-rate-value">₹ 0000/-</p>
-                    </div>
-                    <div class="gold-rate-item">
-                        <p class="gold-rate-label">24 CARAT GOLD</p>
-                        <p id="gold-rate-24ct-value-duplicate" class="gold-rate-value">₹ 0000/-</p>
-                    </div>
-                </div>
-                <p class="gold-rate-disclaimer mt-4"></p>
-            </div>
-            <p class="text-center text-gray-600 mt-8 fade-in text-lg">
-                <i class="fas fa-info-circle mr-2 text-secondary-bronze-gold"></i>
-                <span class="font-semibold">Last Updated:</span> <span id="last-updated-gold-rate"></span>
-            </p>
-            <p class="text-center text-gray-600 mt-2 fade-in text-sm">
-                *These are manually updated prices. Please contact us for the most accurate live rates.
-            </p>
-        </div>
-    </section>
+<h2 class="text-4xl font-bold text-center mb-12 text-deep-red fade-in">Current Gold Rate</h2>
+<div class="gold-rate-card fade-in card-hover-effect">
+<div id="gold-rate-carousel-container" class="gold-rate-carousel-container">
+<div class="gold-rate-item">
+<p class="gold-rate-label">24 CARAT GOLD</p>
+<p id="gold-rate-24ct-value" class="gold-rate-value">₹ 0000/-</p>
+</div>
+<div class="gold-rate-item">
+<p class="gold-rate-label">24 CARAT GOLD</p>
+<p id="gold-rate-24ct-value-duplicate" class="gold-rate-value">₹ 0000/-</p>
+</div>
+</div>
+<p class="gold-rate-disclaimer mt-4"></p>
+</div>
+<p class="text-center text-gray-600 mt-8 fade-in text-lg">
+<i class="fas fa-info-circle mr-2 text-secondary-bronze-gold"></i>
+<span class="font-semibold">Last Updated:</span> <span id="last-updated-gold-rate"></span>
+</p>
+<p class="text-center text-gray-600 mt-2 fade-in text-sm">
+*These are manually updated prices. Please contact us for the most accurate live rates.
+</p>
+</div>
+</section>
     <!-- End Updated Gold Rate Section -->
 
     <!-- New wrapper for FAQ and Testimonials sections -->
@@ -1261,67 +1251,56 @@
         });
 
         // Gold Rate Auto-Scrolling Logic
-        const goldRateCarouselContainer = document.getElementById('gold-rate-carousel-container');
-        const goldRate22ctValue = document.getElementById('gold-rate-22ct-value');
-        const goldRate24ctValue = document.getElementById('gold-rate-24ct-value'); // Corrected ID
-        const lastUpdatedGoldRate = document.getElementById('last-updated-gold-rate');
-        
-        // IMPORTANT: Update these values manually in the code every Monday.
-        // These are the values that will be displayed and scrolled.
-        const goldRates = [
-            { ct: '22', price: 8850 }, // Manually update this price
-            { ct: '24', price: 10050 }  // Manually update this price yashwanth
-        ];
-        let currentGoldRateIndex = 0;
-        const itemHeight = 200; // This should match the height of .gold-rate-item in CSS
-        const totalGoldRates = goldRates.length; // Number of unique gold rate items
+       const goldRateCarouselContainer = document.getElementById('gold-rate-carousel-container');
+        const goldRate24ctValue = document.getElementById('gold-rate-24ct-value');
+const lastUpdatedGoldRate = document.getElementById('last-updated-gold-rate');
 
-        function updateGoldRatesDisplay() {
-            // Update 22CT price
-            goldRate22ctValue.textContent = `₹ ${goldRates[0].price}/-`;
-            // Update 24CT price
-            goldRate24ctValue.textContent = `₹ ${goldRates[1].price}/-`;
 
-            // Update duplicate elements for seamless loop
-            document.getElementById('gold-rate-22ct-value-duplicate').textContent = `₹ ${goldRates[0].price}/-`;
-            document.getElementById('gold-rate-24ct-value-duplicate').textContent = `₹ ${goldRates[1].price}/-`;
+const goldRates = [
+{ ct: '24', price: 10050 } // Only 24ct retained
+];
 
-            // Update last updated timestamp
-            lastUpdatedGoldRate.textContent = new Date().toLocaleString('en-IN', {
-                year: 'numeric',
-                month: 'long',
-                day: 'numeric',
-                // Removed hour, minute, second, hour12, and timeZoneName
-            });
-        }
 
-        function autoScrollGoldRates() {
-            currentGoldRateIndex++;
-            goldRateCarouselContainer.style.transition = 'transform 0.5s ease-in-out'; // Ensure smooth transition
-            goldRateCarouselContainer.style.transform = `translateY(-${currentGoldRateIndex * itemHeight}px)`;
+let currentGoldRateIndex = 0;
+const itemHeight = 200;
+const totalGoldRates = goldRates.length;
 
-            // If we've scrolled past the original items (i.e., on to the duplicates),
-            // instantly reset to the beginning to create a seamless loop.
-            if (currentGoldRateIndex >= totalGoldRates) {
-                setTimeout(() => {
-                    goldRateCarouselContainer.style.transition = 'none'; // Disable transition for instant jump
-                    currentGoldRateIndex = 0; // Reset index to the start of the original items
-                    goldRateCarouselContainer.style.transform = `translateY(-${currentGoldRateIndex * itemHeight}px)`;
-                    // Re-enable transition after a very short delay for next scroll
-                    setTimeout(() => {
-                        goldRateCarouselContainer.style.transition = 'transform 0.5s ease-in-out';
-                    }, 50);
-                }, 500); // This timeout should match the transition duration
-            }
-            
-            // Re-update prices and timestamp (though prices are static, timestamp updates)
-            updateGoldRatesDisplay();
-        }
 
-        // Initial display update
-        updateGoldRatesDisplay();
-        // Start auto-scrolling every 3 seconds
-        setInterval(autoScrollGoldRates, 3000);
+function updateGoldRatesDisplay() {
+goldRate24ctValue.textContent = `₹ ${goldRates[0].price}/-`;
+document.getElementById('gold-rate-24ct-value-duplicate').textContent = `₹ ${goldRates[0].price}/-`;
+lastUpdatedGoldRate.textContent = new Date().toLocaleString('en-IN', {
+year: 'numeric',
+month: 'long',
+day: 'numeric'
+});
+}
+
+
+function autoScrollGoldRates() {
+currentGoldRateIndex++;
+goldRateCarouselContainer.style.transition = 'transform 0.5s ease-in-out';
+goldRateCarouselContainer.style.transform = `translateY(-${currentGoldRateIndex * itemHeight}px)`;
+
+
+if (currentGoldRateIndex >= totalGoldRates) {
+setTimeout(() => {
+goldRateCarouselContainer.style.transition = 'none';
+currentGoldRateIndex = 0;
+goldRateCarouselContainer.style.transform = `translateY(-${currentGoldRateIndex * itemHeight}px)`;
+setTimeout(() => {
+goldRateCarouselContainer.style.transition = 'transform 0.5s ease-in-out';
+}, 50);
+}, 500);
+}
+
+
+updateGoldRatesDisplay();
+}
+
+
+updateGoldRatesDisplay();
+setInterval(autoScrollGoldRates, 3000);
     </script>
 </body>
 </html>
