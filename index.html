@@ -1,0 +1,1573 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anjaneya Gold Company </title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;500;600;700&family=Cinzel:wght@400;700&family=Playfair+Display:wght@700&family=Cinzel+Decorative:wght@400;700;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --color-deep-red: #8B0000;
+            --color-orange-red: #FF4500;
+            /* OrangeRed for a fiery touch */
+            --color-dark-gold: #B8860B;
+            --color-light-gold: #D4AF37;
+
+            --gradient-red-to-orange: linear-gradient(to right, var(--color-deep-red), var(--color-orange-red));
+            --gradient-gold-to-bronze: linear-gradient(to right, var(--color-dark-gold), var(--color-light-gold));
+            --gradient-dark-red: linear-gradient(to right, #660000, var(--color-deep-red));
+
+            --header-height: 80px;
+            /* Adjusted base height */
+        }
+
+        @media (min-width: 1024px) {
+            :root {
+                --header-height: 100px;
+            }
+        }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            background-color: #ffffff;
+            /* Very light, clean background */
+            color: #333333;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4 {
+            font-family: 'Cinzel', serif;
+            /* Elegant headings */
+        }
+
+        /* Custom font for the tagline */
+        .tagline-font {
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* New font for the main brand name in header */
+        .header-brand-font {
+            font-family: 'Cinzel Decorative', serif;
+        }
+
+        /* Apply new primary gradient */
+        .bg-gradient-red-primary {
+            background: var(--gradient-red-to-orange);
+        }
+
+        .text-deep-red {
+            color: var(--color-deep-red);
+        }
+
+        .bg-gradient-red-dark {
+            background: var(--gradient-dark-red);
+        }
+
+        /* Existing gold/bronze and other colors */
+        .secondary-bronze-gold {
+            background-color: var(--color-dark-gold);
+        }
+
+        .text-secondary-bronze-gold {
+            color: var(--color-dark-gold);
+        }
+
+        .border-secondary-bronze-gold {
+            border-color: var(--color-dark-gold);
+        }
+
+        .gold-bronze-gradient-bg {
+            background: var(--gradient-gold-to-bronze);
+        }
+
+        .gold-bronze-gradient-text {
+            background: var(--gradient-gold-to-bronze);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .card-shadow {
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08), 0 6px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Animation classes - Reduced transition duration for faster response */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.2s ease-out, transform 0.2s ease-out;
+            /* Faster */
+        }
+
+        .fade-in.appear {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .slide-in-left {
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: opacity 0.2s ease-out, transform 0.2s ease-out;
+            /* Faster */
+        }
+
+        .slide-in-left.appear {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .slide-in-right {
+            opacity: 0;
+            transform: translateX(50px);
+            transition: opacity 0.2s ease-out, transform 0.2s ease-out;
+            /* Faster */
+        }
+
+        .slide-in-right.appear {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* Button hover animation: Scale, subtle rotate, and shadow */
+        .btn-hover-effect {
+            transition: all 0.2s ease-in-out;
+        }
+
+        .btn-hover-effect:hover {
+            transform: translateY(-3px) scale(1.02) rotateZ(1deg);
+            /* Added subtle rotation */
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.25);
+        }
+
+        /* Card hover animation: Scale, subtle rotate, and shadow */
+        .card-hover-effect {
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+        }
+
+        .card-hover-effect:hover {
+            transform: translateY(-5px) scale(1.02) rotateZ(-1deg);
+            /* Added subtle rotation */
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.18);
+        }
+
+        /* Navigation link hover animation */
+        .nav-link-hover-effect {
+            position: relative;
+            transition: all 0.2s ease-in-out;
+            font-family: 'Cinzel', serif;
+            /* Applied Cinzel font */
+            font-weight: 700;
+            /* Made bold */
+        }
+
+        .nav-link-hover-effect:hover {
+            color: var(--color-dark-gold);
+            /* Bronze color on hover */
+            transform: scale(1.05);
+        }
+
+        .nav-link-hover-effect::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: var(--color-dark-gold);
+            /* Bronze color for underline */
+            transition: width 0.2s ease-in-out;
+        }
+
+        .nav-link-hover-effect:hover::after {
+            width: 100%;
+        }
+
+        /* Testimonial card animation on load/appear - Faster */
+        .testimonial-card-animation {
+            opacity: 0;
+            transform: translateY(30px) scale(0.95);
+            transition: opacity 0.2s ease-out, transform 0.2s ease-out;
+            /* Faster */
+        }
+
+        .testimonial-card-animation.appear {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+
+        /* WhatsApp FAB positioning */
+        .fab-whatsapp {
+            position: fixed;
+            bottom: 20px;
+            /* Adjusted to be the only FAB at the bottom */
+            right: 20px;
+            background-color: #25D366;
+            /* WhatsApp green */
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.8rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            z-index: 1001;
+        }
+
+        .fab-whatsapp:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+        }
+
+
+        /* Policy Modal Styles */
+        .policy-modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1002;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.2s ease-out, visibility 0.2s ease-out;
+        }
+
+        .policy-modal-overlay.open {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .policy-modal-content {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            max-width: 800px;
+            max-height: 80vh;
+            overflow-y: auto;
+            position: relative;
+            transform: translateY(20px);
+            transition: transform 0.2s ease-out;
+        }
+
+        .policy-modal-overlay.open .policy-modal-content {
+            transform: translateY(0);
+        }
+
+        .policy-modal-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 2rem;
+            cursor: pointer;
+            color: #333;
+            transition: color 0.2s ease;
+        }
+
+        .policy-modal-close:hover {
+            color: var(--color-deep-red);
+            /* Dark Red on hover */
+        }
+
+        /* Generic icon hover effect with scale and color change */
+        .icon-hover-effect {
+            transition: transform 0.2s ease-in-out, color 0.2s ease-in-out;
+            display: inline-block;
+            /* Ensures transform works correctly */
+        }
+
+        .icon-hover-effect:hover {
+            transform: scale(1.1);
+            /* Slightly larger scale for all icons */
+            color: var(--color-light-gold);
+            /* Lighter gold on hover */
+        }
+
+        /* Specific override for white icons on red background to change to gold */
+        .bg-gradient-red-dark .icon-hover-effect,
+        .red-gradient-bg .icon-hover-effect {
+            /* Keep red-gradient-bg for flip card back */
+            color: white;
+            /* Default color */
+        }
+
+        .bg-gradient-red-dark .icon-hover-effect:hover,
+        .red-gradient-bg .icon-hover-effect:hover {
+            color: var(--color-light-gold);
+            /* Gold on hover */
+        }
+
+        /* Specific override for white icons on bronze background to change to gold */
+        .secondary-bronze-gold .icon-hover-effect {
+            color: white;
+            /* Default color, changed from emerald to white for contrast */
+        }
+
+        .secondary-bronze-gold .icon-hover-effect:hover {
+            color: var(--color-light-gold);
+            /* Gold on hover */
+        }
+
+        /* Testimonial navigation button color */
+        #prev-testimonial,
+        #next-testimonial {
+            background: var(--gradient-dark-red);
+            /* Darker red gradient */
+        }
+
+        #prev-testimonial:hover,
+        #next-testimonial:hover {
+            background: linear-gradient(to right, var(--color-deep-red), #660000);
+            /* Reverse gradient on hover */
+        }
+
+        /* FAQ specific styles */
+        .faq-item {
+            background-color: #fff;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            transition: all 0.2s ease;
+        }
+
+        .faq-question {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 25px;
+            cursor: pointer;
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: var(--color-deep-red);
+            /* Primary red */
+            transition: background-color 0.2s ease;
+        }
+
+        .faq-question:hover {
+            background-color: #ffe0b2;
+            /* Light orange/peach hover background */
+        }
+
+        .faq-question.active {
+            background: var(--gradient-dark-red);
+            /* Darker red gradient when active */
+            color: white;
+        }
+
+        .faq-question .arrow-icon {
+            transition: transform 0.2s ease;
+        }
+
+        .faq-question.active .arrow-icon {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            padding: 0 25px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.2s ease-out, padding 0.2s ease-out;
+            color: #555;
+            line-height: 1.6;
+        }
+
+        /* Removed .faq-answer.open fixed max-height */
+
+        /* Flip Card Specific Styles */
+        .flip-card {
+            perspective: 1000px;
+            /* Establishes 3D space for the flip effect */
+            height: auto;
+            /* Allow height to adjust to content */
+            width: 100%;
+            /* Ensure it takes full column width */
+            min-height: 250px;
+            /* Give a minimum height for consistent card size */
+        }
+
+        .flip-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.2s;
+            /* Smooth flip animation */
+            transform-style: preserve-3d;
+            /* Keep children in 3D space */
+        }
+
+        /* Flip on hover */
+        .flip-card:hover .flip-card-inner {
+            transform: rotateY(180deg);
+        }
+
+        /* Front and Back of the card */
+        .flip-card-front,
+        .flip-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden;
+            /* Hide back of the element when facing away */
+            backface-visibility: hidden;
+            display: flex;
+            /* Use flexbox for centering content */
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 1.5rem;
+            /* Tailwind p-6 equivalent */
+            border-radius: 0.75rem;
+            /* Tailwind rounded-xl equivalent */
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08), 0 6px 6px rgba(0, 0, 0, 0.1);
+            /* Tailwind card-shadow equivalent */
+        }
+
+        .flip-card-front {
+            background-color: #fff;
+            /* White background for front */
+            color: #333;
+            z-index: 2;
+        }
+
+        .flip-card-back {
+            background: var(--gradient-dark-red);
+            /* Darker red gradient for back */
+            color: white;
+            transform: rotateY(180deg);
+            /* Initially hidden */
+        }
+
+        /* Scroll margin for fixed header */
+        section[id],
+        header[id="home"] {
+            scroll-margin-top: var(--header-height);
+        }
+
+        /* Transparent Header Styles */
+        .transparent-header {
+            background-color: rgba(233, 227, 227, 0.445);
+            /* Slightly opaque white */
+            backdrop-filter: black(10px);
+            /* Frosted glass effect */
+            -webkit-backdrop-filter: black(10px);
+            /* For Safari */
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            /* Subtle shadow */
+        }
+
+        /* Custom style for the services section background */
+        #services {
+            background-image: url('assets/gold-pattern-background.png');
+            /* Updated path to gold bars and rings */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            position: relative;
+            /* Needed for overlay */
+            z-index: 1;
+            /* Ensure it's above the overlay */
+        }
+
+        /* Overlay for readability on services section */
+        #services::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.637);
+            /* White overlay with 80% opacity */
+            z-index: -1;
+            /* Place behind content */
+        }
+
+        /* Gold Rate Section Specific Styles */
+        #gold-rates {
+            background-image: url('assets/g1.png');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        #gold-rates::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.185);
+            /* White overlay for readability */
+            z-index: -1;
+        }
+
+        .gold-rate-card {
+            background-color: #fff;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            text-align: center;
+            margin-bottom: 20px;
+            position: relative;
+            /* Needed for absolute positioning of items */
+            overflow: hidden;
+            /* Hide overflowing items */
+            height: 200px;
+            /* Fixed height for the scrolling effect */
+        }
+
+        .gold-rate-carousel-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: auto;
+            /* Let content define height */
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            transition: transform 0.5s ease-in-out;
+            /* Smooth transition for scrolling */
+        }
+
+        .gold-rate-item {
+            flex-shrink: 0;
+            /* Prevent items from shrinking */
+            width: 100%;
+            height: 200px;
+            /* Each item takes the full height of the card */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .gold-rate-value {
+            font-family: 'Cinzel Decorative', serif;
+            font-size: 2.5rem;
+            /* Smaller for mobile */
+            font-weight: 700;
+            color: var(--color-deep-red);
+            /* Deep red color */
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+
+        @media (min-width: 768px) {
+            .gold-rate-value {
+                font-size: 3.5rem;
+            }
+        }
+
+        .gold-rate-label {
+            font-family: 'Cinzel', serif;
+            font-size: 1.4rem;
+            /* Smaller for mobile */
+            font-weight: 600;
+            color: var(--color-dark-gold);
+            /* Dark gold color */
+        }
+
+        @media (min-width: 768px) {
+            .gold-rate-label {
+                font-size: 1.8rem;
+            }
+        }
+
+        .gold-rate-disclaimer {
+            font-size: 0.9rem;
+            color: #777;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+
+<body class="text-grey-800">
+
+    <nav class="transparent-header p-4 sticky top-0 z-50">
+        <div class="container mx-auto flex justify-between items-center flex-wrap">
+            <a href="#home" class="flex items-center text-2xl md:text-3xl lg:text-4xl font-bold rounded-lg p-2">
+                <span class="gold-bronze-gradient-text header-brand-font">Anjaneya Gold Company</span>
+            </a>
+            <div class="block lg:hidden">
+                <button id="nav-toggle"
+                    class="flex items-center px-3 py-2 border rounded text-gray-500 border-gray-600 hover:text-deep-red hover:border-deep-red">
+                    <svg class="fill-current h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                        <title>Menu</title>
+                        <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" />
+                    </svg>
+                </button>
+            </div>
+            <div class="w-full flex-grow lg:flex lg:items-center lg:w-auto hidden lg:block" id="nav-content">
+                <ul class="text-lg lg:flex justify-end flex-1 items-center">
+                    <li class="mr-6 my-2 lg:my-0">
+                        <a href="#home"
+                            class="hover:text-deep-red transition duration-200 ease-in-out p-2 rounded-lg nav-link-hover-effect">Home</a>
+                    </li>
+                    <li class="mr-6 my-2 lg:my-0">
+                        <a href="#services"
+                            class="hover:text-deep-red transition duration-200 ease-in-out p-2 rounded-lg nav-link-hover-effect">Services</a>
+                    </li>
+                    <li class="mr-6 my-2 lg:my-0">
+                        <a href="#why-us"
+                            class="hover:text-deep-red transition duration-200 ease-in-out p-2 rounded-lg nav-link-hover-effect">Why
+                            Us</a>
+                    </li>
+                    <li class="mr-6 my-2 lg:my-0">
+                        <a href="#testimonials"
+                            class="hover:text-deep-red transition duration-200 ease-in-out p-2 rounded-lg nav-link-hover-effect">Testimonials</a>
+                    </li>
+                    <li class="mr-6 my-2 lg:my-0">
+                        <a href="#contact"
+                            class="hover:text-deep-red transition duration-200 ease-in-out p-2 rounded-lg nav-link-hover-effect">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <header id="home"
+        class="relative bg-cover bg-center h-screen flex items-center justify-center text-white overflow-hidden"
+        style="background-image: url('assets/hero-gold-background.png');">
+        <div class="absolute inset-0 bg-black opacity-60"></div>
+        <div class="container mx-auto text-center z-10 p-4 flex flex-col items-center justify-center">
+            <div class="w-full slide-in-left flex flex-col items-center">
+                <img src="assets/logo.jpg" alt="Anjaneya Gold Company Logo"
+                    class="h-28 w-28 md:h-40 md:w-40 rounded-full mb-6 shadow-lg">
+
+                <h2 class="text-5xl md:text-6xl font-extrabold mb-2 leading-tight drop-shadow-lg header-brand-font">
+                    <span class="gold-bronze-gradient-text">Anjaneya Gold Company</span>
+                </h2>
+
+                <p class="text-xl md:text-2xl mb-6 max-w-3xl mx-auto drop-shadow-md tagline-font">
+                    values your gold
+                </p>
+
+                <h1 class="text-3xl md:text-5xl lg:text-6xl font-extrabold mb-4 leading-tight drop-shadow-lg">
+                    Sell Gold for Cash & <span class="gold-bronze-gradient-text">Release Your Pledged Gold</span>
+                </h1>
+
+                <p class="text-xl md:text-2xl mb-6 max-w-3xl mx-auto drop-shadow-md">
+                    Your trusted partner for buying gold at current market prices, releasing pledged gold, re-pledging,
+                    and convenient mobile service.
+                </p>
+
+                <ul class="text-lg space-y-2 mb-8 text-white max-w-xl mx-auto">
+                    <li class="flex items-center justify-center"><i
+                            class="fas fa-check-circle text-secondary-bronze-gold mr-3"></i> Best Price Guaranteed</li>
+                    <li class="flex items-center justify-center"><i
+                            class="fas fa-check-circle text-secondary-bronze-gold mr-3"></i> XRF Gold Testing for 99%
+                        Purity Check</li>
+                    <li class="flex items-center justify-center"><i
+                            class="fas fa-check-circle text-secondary-bronze-gold mr-3"></i> Instant Cash Transfer to
+                        Your Bank Account</li>
+                    <li class="flex items-center justify-center"><i
+                            class="fas fa-check-circle text-secondary-bronze-gold mr-3"></i> Zero Service or Commission
+                        Charges</li>
+                </ul>
+                <a href="#contact"
+                    class="gold-bronze-gradient-bg text-white font-semibold py-3 px-8 rounded-full shadow-lg btn-hover-effect">
+                    Get a Free Quote
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <section class="py-16 bg-gradient-red-primary text-white text-center shadow-inner">
+        <div class="container mx-auto px-5">
+            <h2 class="text-4xl md:text-6xl font-extrabold mb-4 gold-bronze-gradient-text drop-shadow-lg">
+                20+ years of experience turning your gold into money.
+            </h2>
+        </div>
+    </section>
+
+    <section id="services" class="py-20">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-bold text-center mb-12 text-deep-red fade-in">Our Comprehensive Gold Services</h2>
+
+            <div class="mb-16">
+                <h3 class="text-3xl font-bold text-center mb-8 text-secondary-bronze-gold fade-in">Our Gold Buying
+                    Procedure</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <div class="flip-card fade-in card-hover-effect">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front bg-white">
+                                <div
+                                    class="bg-gradient-red-dark w-16 h-16 flex items-center justify-center rounded-full mx-auto mb-4">
+                                    <i class="fas fa-search text-white text-3xl icon-hover-effect"></i>
+                                </div>
+                                <h4 class="text-xl font-semibold mb-2 text-deep-red">Transparent Processing</h4>
+                                <p class="text-gray-600">We evaluate your gold using German XRF Gold Testing Machine for
+                                    99% purity check.</p>
+                            </div>
+                            <div class="flip-card-back bg-gradient-red-dark text-white">
+                                <h4 class="text-xl font-semibold mb-2">Detailed Purity Check</h4>
+                                <p class="text-gray-200 mb-4 text-center">Our German XRF machine ensures precise 99%
+                                    purity analysis for your gold.</p>
+                                <a href="#contact"
+                                    class="gold-bronze-gradient-bg text-white font-semibold py-2 px-4 rounded-full text-sm btn-hover-effect">Get
+                                    Details</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flip-card fade-in card-hover-effect" style="transition-delay: 0.1s;">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front bg-white">
+                                <div
+                                    class="bg-gradient-red-dark w-16 h-16 flex items-center justify-center rounded-full mx-auto mb-4">
+                                    <i class="fas fa-chart-line text-white text-3xl icon-hover-effect"></i>
+                                </div>
+                                <h4 class="text-xl font-semibold mb-2 text-deep-red">Pricing Evaluation</h4>
+                                <p class="text-gray-600">With purity & weight check, we update you with the best price
+                                    according to current market rate.</p>
+                            </div>
+                            <div class="flip-card-back bg-gradient-red-dark text-white">
+                                <h4 class="text-xl font-semibold mb-2">Fair Market Value</h4>
+                                <p class="text-gray-200 mb-4 text-center">We offer the most competitive prices for your
+                                    gold, ensuring you get maximum value.</p>
+                                <a href="#contact"
+                                    class="gold-bronze-gradient-bg text-white font-semibold py-2 px-4 rounded-full text-sm btn-hover-effect">Get
+                                    Quote</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flip-card fade-in card-hover-effect" style="transition-delay: 0.2s;">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front bg-white">
+                                <div
+                                    class="bg-gradient-red-dark w-16 h-16 flex items-center justify-center rounded-full mx-auto mb-4">
+                                    <i class="fas fa-file-alt text-white text-3xl icon-hover-effect"></i>
+                                </div>
+                                <h4 class="text-xl font-semibold mb-2 text-deep-red">Documentation</h4>
+                                <p class="text-gray-600">Document verification and receipt transfer of your gold is
+                                    handled smoothly.</p>
+                            </div>
+                            <div class="flip-card-back bg-gradient-red-dark text-white">
+                                <h4 class="text-xl font-semibold mb-2">Seamless Process</h4>
+                                <p class="text-gray-200 mb-4 text-center">All legal formalities and receipt transfers
+                                    are handled efficiently and securely.</p>
+                                <a href="#contact"
+                                    class="gold-bronze-gradient-bg text-white font-semibold py-2 px-4 rounded-full text-sm btn-hover-effect">Know
+                                    More</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flip-card fade-in card-hover-effect" style="transition-delay: 0.3s;">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front bg-white">
+                                <div
+                                    class="bg-gradient-red-dark w-16 h-16 flex items-center justify-center rounded-full mx-auto mb-4">
+                                    <i class="fas fa-money-bill-wave text-white text-3xl icon-hover-effect"></i>
+                                </div>
+                                <h4 class="text-xl font-semibold mb-2 text-deep-red">Instant Cash Transfer</h4>
+                                <p class="text-gray-600">Once formalities are completed, the amount will be transferred
+                                    to your bank account instantly.</p>
+                            </div>
+                            <div class="flip-card-back bg-gradient-red-dark text-white">
+                                <h4 class="text-xl font-semibold mb-2">Immediate Payment</h4>
+                                <p class="text-gray-200 mb-4 text-center">Funds are transferred instantly to your
+                                    account after successful verification.</p>
+                                <a href="#contact"
+                                    class="gold-bronze-gradient-bg text-white font-semibold py-2 px-4 rounded-full text-sm btn-hover-effect">Start
+                                    Selling</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mb-16">
+                <h3 class="text-3xl font-bold text-center mb-8 text-secondary-bronze-gold fade-in">Releasing Pledged
+                    Gold Procedure</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <div class="flip-card fade-in card-hover-effect">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front bg-white">
+                                <div
+                                    class="bg-gradient-red-dark w-16 h-16 flex items-center justify-center rounded-full mx-auto mb-4">
+                                    <span class="text-white text-3xl font-bold icon-hover-effect">01</span>
+                                </div>
+                                <h4 class="text-xl font-semibold mb-2 text-deep-red">Pledged Document</h4>
+                                <p class="text-gray-600">Present your pledged document for verification purposes.</p>
+                            </div>
+                            <div class="flip-card-back bg-gradient-red-dark text-white">
+                                <h4 class="text-xl font-semibold mb-2">Simple Verification</h4>
+                                <p class="text-gray-200 mb-4 text-center">Just provide your pledged document, and we'll
+                                    begin the release process.</p>
+                                <a href="#contact"
+                                    class="gold-bronze-gradient-bg text-white font-semibold py-2 px-4 rounded-full text-sm btn-hover-effect">Learn
+                                    More</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flip-card fade-in card-hover-effect" style="transition-delay: 0.1s;">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front bg-white">
+                                <div
+                                    class="bg-gradient-red-dark w-16 h-16 flex items-center justify-center rounded-full mx-auto mb-4">
+                                    <span class="text-white text-3xl font-bold icon-hover-effect">02</span>
+                                </div>
+                                <h4 class="text-xl font-semibold mb-2 text-deep-red">Authentication Check</h4>
+                                <p class="text-gray-600">If documents are found authentic, we will check with the
+                                    bank/financier and release your pledged gold.</p>
+                            </div>
+                            <div class="flip-card-back bg-gradient-red-dark text-white">
+                                <h4 class="text-xl font-semibold mb-2">Secure Release</h4>
+                                <p class="text-gray-200 mb-4 text-center">We authenticate with your bank/financier to
+                                    safely release your gold.</p>
+                                <a href="#contact"
+                                    class="gold-bronze-gradient-bg text-white font-semibold py-2 px-4 rounded-full text-sm btn-hover-effect">Get
+                                    Started</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flip-card fade-in card-hover-effect" style="transition-delay: 0.2s;">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front bg-white">
+                                <div
+                                    class="bg-gradient-red-dark w-16 h-16 flex items-center justify-center rounded-full mx-auto mb-4">
+                                    <span class="text-white text-3xl font-bold icon-hover-effect">03</span>
+                                </div>
+                                <h4 class="text-xl font-semibold mb-2 text-deep-red">Spot Offer</h4>
+                                <p class="text-gray-600">Once all formalities are completed, we will provide you with a
+                                    spot offer for your pledged gold.</p>
+                            </div>
+                            <div class="flip-card-back bg-gradient-red-dark text-white">
+                                <h4 class="text-xl font-semibold mb-2">Best Offer</h4>
+                                <p class="text-gray-200 mb-4 text-center">Receive an immediate and competitive offer for
+                                    your released gold.</p>
+                                <a href="#contact"
+                                    class="gold-bronze-gradient-bg text-white font-semibold py-2 px-4 rounded-full text-sm btn-hover-effect">View
+                                    Offer</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flip-card fade-in card-hover-effect" style="transition-delay: 0.3s;">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front bg-white">
+                                <div
+                                    class="bg-gradient-red-dark w-16 h-16 flex items-center justify-center rounded-full mx-auto mb-4">
+                                    <span class="text-white text-3xl font-bold icon-hover-effect">04</span>
+                                </div>
+                                <h4 class="text-xl font-semibold mb-2 text-deep-red">Instant Cash Transfer</h4>
+                                <p class="text-gray-600">The amount will be transferred to your bank account instantly
+                                    upon acceptance.</p>
+                            </div>
+                            <div class="flip-card-back bg-gradient-red-dark text-white">
+                                <h4 class="text-xl font-semibold mb-2">Quick Funds</h4>
+                                <p class="text-gray-200 mb-4 text-center">Get instant cash transfer to your account once
+                                    the transaction is complete.</p>
+                                <a href="#contact"
+                                    class="gold-bronze-gradient-bg text-white font-semibold py-2 px-4 rounded-full text-sm btn-hover-effect">Release
+                                    Gold Now</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <h3 class="text-3xl font-bold text-center mb-8 text-secondary-bronze-gold fade-in">Re-pledge Your Gold &
+                    Mobile Service</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="bg-white p-8 rounded-xl card-shadow text-center fade-in card-hover-effect">
+                        <div
+                            class="bg-gradient-red-dark w-20 h-20 flex items-center justify-center rounded-full mx-auto mb-6">
+                            <i class="fas fa-exchange-alt text-white text-4xl icon-hover-effect"></i>
+                        </div>
+                        <h4 class="text-2xl font-semibold mb-3 text-deep-red">Re-pledge Your Gold with Us</h4>
+                        <p class="text-gray-700 mb-4">
+                            Need to re-pledge your gold for better terms or a higher loan amount? Anjaneya Gold Company
+                            offers competitive re-pledging services, helping you manage your finances efficiently. We
+                            ensure a seamless transition and excellent value for your assets.
+                        </p>
+                        <a href="#contact"
+                            class="gold-bronze-gradient-bg text-white font-semibold py-2 px-6 rounded-full text-md btn-hover-effect">Learn
+                            More</a>
+                    </div>
+                    <div class="bg-white p-8 rounded-xl card-shadow text-center fade-in card-hover-effect"
+                        style="transition-delay: 0.1s;">
+                        <div
+                            class="bg-gradient-red-dark w-20 h-20 flex items-center justify-center rounded-full mx-auto mb-6">
+                            <i class="fas fa-car text-white text-4xl icon-hover-effect"></i>
+                        </div>
+                        <h4 class="text-2xl font-semibold mb-3 text-deep-red">Convenient Mobile Service</h4>
+                        <p class="text-gray-700 mb-4">
+                            For your ultimate convenience, Anjaneya Gold Company offers a unique mobile service. We come
+                            to your location to buy gold, conduct purity checks, and complete transactions securely and
+                            efficiently. Experience hassle-free gold selling from the comfort of your home or office.
+                        </p>
+                        <a href="#contact"
+                            class="gold-bronze-gradient-bg text-white font-semibold py-2 px-6 rounded-full text-md btn-hover-effect">Book
+                            Mobile Service</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="why-us" class="py-20 bg-gradient-red-primary">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-bold text-center mb-12 text-white fade-in">Why Choose Anjaneya Gold Company?</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="text-center fade-in card-hover-effect">
+                    <div
+                        class="secondary-bronze-gold w-20 h-20 flex items-center justify-center rounded-full mx-auto mb-4">
+                        <i class="fas fa-handshake text-4xl icon-hover-effect"></i>
+                    </div>
+                    <h3 class="text-2xl font-semibold mb-2 text-white">Trust & Transparency</h3>
+                    <p class="text-gray-200">Over two decades of integrity and honest dealings.</p>
+                </div>
+                <div class="text-center fade-in card-hover-effect" style="transition-delay: 0.1s;">
+                    <div
+                        class="secondary-bronze-gold w-20 h-20 flex items-center justify-center rounded-full mx-auto mb-4">
+                        <i class="fas fa-rupee-sign text-4xl icon-hover-effect"></i>
+                    </div>
+                    <h3 class="text-2xl font-semibold mb-2 text-white">Best Market Prices</h3>
+                    <p class="text-gray-200">We offer the most competitive prices for your gold.</p>
+                </div>
+                <div class="text-center fade-in card-hover-effect" style="transition-delay: 0.2s;">
+                    <div
+                        class="secondary-bronze-gold w-20 h-20 flex items-center justify-center rounded-full mx-auto mb-4">
+                        <i class="fas fa-shield-alt text-4xl icon-hover-effect"></i>
+                    </div>
+                    <h3 class="text-2xl font-semibold mb-2 text-white">Certified Purity</h3>
+                    <p class="text-gray-200">Advanced XRF testing ensures 99% accurate purity checks.</p>
+                </div>
+                <div class="text-center fade-in card-hover-effect" style="transition-delay: 0.3s;">
+                    <div
+                        class="secondary-bronze-gold w-20 h-20 flex items-center justify-center rounded-full mx-auto mb-4">
+                        <i class="fas fa-clock text-4xl icon-hover-effect"></i>
+                    </div>
+                    <h3 class="text-2xl font-semibold mb-2 text-white">Quick & Secure</h3>
+                    <p class="text-gray-200">Fast processing and instant bank transfers.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-12 md:py-16 bg-gradient-red-primary text-white text-center shadow-inner">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-5xl font-extrabold mb-4 gold-bronze-gradient-text drop-shadow-lg">
+                300+ Happy Customers and Counting!
+            </h2>
+            <p class="text-lg md:text-2xl max-w-2xl mx-auto opacity-90">
+                Join our growing family of satisfied clients who trust us with their gold needs.
+            </p>
+        </div>
+    </section>
+
+    <!-- New wrapper for FAQ and Testimonials sections -->
+    <div class="faq-testimonials-wrapper">
+        <section id="faq" class="py-20 bg-red-50">
+            <div class="container mx-auto px-4 max-w-3xl">
+                <h2 class="text-4xl font-bold text-center mb-12 text-deep-red fade-in">Frequently Asked Questions</h2>
+
+                <div class="faq-container">
+                    <div class="faq-item fade-in">
+                        <div class="faq-question">
+                            <span>What ID Proof is Required For Selling Gold?</span>
+                            <i class="fas fa-chevron-down arrow-icon"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>For selling gold, we typically require a valid government-issued photo ID (such as an
+                                Aadhar card, PAN card, or Driver's License) and address proof. Our team will guide you
+                                through the exact requirements during your visit.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item fade-in" style="transition-delay: 0.1s;">
+                        <div class="faq-question">
+                            <span>Can I sell gold for cash?</span>
+                            <i class="fas fa-chevron-down arrow-icon"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Yes, you can sell gold for cash. We offer instant cash transfers directly to your bank
+                                account upon completion of the transaction, ensuring a quick and secure process.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item fade-in" style="transition-delay: 0.2s;">
+                        <div class="faq-question">
+                            <span>What are your Branch Timings?</span>
+                            <i class="fas fa-chevron-down arrow-icon"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Our branches are open from 10:00 AM to 7:00 PM, Monday to Saturday. We are closed on
+                                Sundays and public holidays. For mobile service, please contact us to schedule an
+                                appointment.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item fade-in" style="transition-delay: 0.3s;">
+                        <div class="faq-question">
+                            <span>Can I sell my gold which is without a hallmark?</span>
+                            <i class="fas fa-chevron-down arrow-icon"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Yes, you can sell gold even if it's without a hallmark. We use advanced German XRF Gold
+                                Testing Machines to accurately determine the purity of your gold, regardless of whether
+                                it's hallmarked or not.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item fade-in" style="transition-delay: 0.4s;">
+                        <div class="faq-question">
+                            <span>Do you Release Pledged Gold?</span>
+                            <i class="fas fa-chevron-down arrow-icon"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Absolutely. We specialize in releasing pledged gold from banks and other finance
+                                companies. Just provide us with your pledged document, and we will handle the rest,
+                                including authentication and settlement.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item fade-in" style="transition-delay: 0.5s;">
+                        <div class="faq-question">
+                            <span>Can you release Gold which has already been pledged in a Bank or Finance
+                                company?</span>
+                            <i class="fas fa-chevron-down arrow-icon"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Yes, we can. We have a streamlined process to help you release your gold from any bank or
+                                finance company where it has been pledged. We will verify the documents, settle the
+                                outstanding amount, and then proceed with the gold purchase.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item fade-in" style="transition-delay: 0.6s;">
+                        <div class="faq-question">
+                            <span>What if I am not satisfied with the valuation after the release of Gold?</span>
+                            <i class="fas fa-chevron-down arrow-icon"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Your satisfaction is our priority. If you are not satisfied with the valuation after your
+                                pledged gold has been released, you are under no obligation to sell. We believe in
+                                complete transparency and fair dealings.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="testimonials" class="py-20 bg-red-50">
+            <div class="container mx-auto px-4">
+                <h2 class="text-4xl font-bold text-center mb-12 text-deep-red fade-in">What Our Happy Clients Say</h2>
+                <div class="relative max-w-3xl mx-auto bg-white p-8 rounded-xl card-shadow overflow-hidden">
+                    <div id="testimonial-carousel" class="flex transition-transform duration-200 ease-in-out">
+                        <div class="w-full flex-shrink-0 text-center p-4 testimonial-card-animation">
+                            <p class="text-lg italic text-gray-700 mb-6">
+                                "Anjaneya Gold Company made selling my old gold incredibly easy and transparent. The
+                                staff were professional, and I received the best price. Highly recommended!"
+                            </p>
+                            <img src="assets/p1.png" alt="Pooja gowda Avatar"
+                                class="w-20 h-20 rounded-full mx-auto mb-3 border-4 border-secondary-bronze-gold">
+                            <p class="font-semibold text-deep-red">Pooja gowda</p>
+                            <div class="text-secondary-bronze-gold">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                                    class="fas fa-star"></i><i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                        <div class="w-full flex-shrink-0 text-center p-4 testimonial-card-animation">
+                            <p class="text-lg italic text-gray-700 mb-6">
+                                "I was amazed by their mobile service! They came to my home, did the testing, and
+                                transferred the cash instantly. So convenient and trustworthy."
+                            </p>
+                            <img src="assets/p2.png" alt="Rahul Kumar Avatar"
+                                class="w-20 h-20 rounded-full mx-auto mb-3 border-4 border-secondary-bronze-gold">
+                            <p class="font-semibold text-deep-red">Rahul Kumar</p>
+                            <div class="text-secondary-bronze-gold">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                                    class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                            </div>
+                        </div>
+                        <div class="w-full flex-shrink-0 text-center p-4 testimonial-card-animation">
+                            <p class="text-lg italic text-gray-700 mb-6">
+                                "Releasing my pledged gold was a breeze with Anjaneya Gold. They handled everything with
+                                the bank and gave me a fair offer. Excellent service!"
+                            </p>
+                            <img src="assets/p3.png" alt="Anjali ShettyAvatar"
+                                class="w-20 h-20 rounded-full mx-auto mb-3 border-4 border-secondary-bronze-gold">
+                            <p class="font-semibold text-deep-red">Anjali Shetty</p>
+                            <div class="text-secondary-bronze-gold">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                                    class="fas fa-star"></i><i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                        <div class="w-full flex-shrink-0 text-center p-4 testimonial-card-animation">
+                            <p class="text-lg italic text-gray-700 mb-6">
+                                "I needed urgent cash and Anjaneya Gold provided a quick and fair deal for my gold.
+                                Their process is very professional and trustworthy. Highly recommend their services!"
+                            </p>
+                            <img src="assets/p4.png" alt="Deepak Verma Avatar"
+                                class="w-20 h-20 rounded-full mx-auto mb-3 border-4 border-secondary-bronze-gold">
+                            <p class="font-semibold text-deep-red">Deepak Verma</p>
+                            <div class="text-secondary-bronze-gold">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                                    class="fas fa-star"></i><i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                        <div class="w-full flex-shrink-0 text-center p-4 testimonial-card-animation">
+                            <p class="text-lg italic text-gray-700 mb-6">
+                                "The re-pledging service was a lifesaver! I got better terms and the team was incredibly
+                                helpful throughout the entire process. Thank you, Anjaneya Gold!"
+                            </p>
+                            <img src="assets/p5.png" alt="Sneha Reddy Avatar"
+                                class="w-20 h-20 rounded-full mx-auto mb-3 border-4 border-secondary-bronze-gold">
+                            <p class="font-semibold text-deep-red">Sneha Reddy</p>
+                            <div class="text-secondary-bronze-gold">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                                    class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <button id="prev-testimonial"
+                        class="absolute left-0 top-1/2 -translate-y-1/2 bg-gradient-red-dark text-white p-3 rounded-full shadow-lg hover:bg-opacity-80 transition btn-hover-effect">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <button id="next-testimonial"
+                        class="absolute right-0 top-1/2 -translate-y-1/2 bg-gradient-red-dark text-white p-3 rounded-full shadow-lg hover:bg-opacity-80 transition btn-hover-effect">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                    <div class="flex justify-center mt-4 space-x-2">
+                        <span class="dot bg-gray-400 w-3 h-3 rounded-full cursor-pointer" data-index="0"></span>
+                        <span class="dot bg-gray-400 w-3 h-3 rounded-full cursor-pointer" data-index="1"></span>
+                        <span class="dot bg-gray-400 w-3 h-3 rounded-full cursor-pointer" data-index="2"></span>
+                        <span class="dot bg-gray-400 w-3 h-3 rounded-full cursor-pointer" data-index="3"></span>
+                        <span class="dot bg-gray-400 w-3 h-3 rounded-full cursor-pointer" data-index="4"></span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <!-- End New wrapper for FAQ and Testimonials sections -->
+
+    <section id="contact" class="py-20 bg-gradient-red-primary text-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-bold text-center mb-12 text-white fade-in">Contact Us</h2>
+            <div
+                class="max-w-4xl mx-auto bg-white p-8 rounded-xl card-shadow flex flex-col md:flex-row items-center gap-8 fade-in">
+                <div class="md:w-1/2">
+                    <img src="assets/logo.jpg" alt="Modern Office Building"
+                        class="rounded-lg object-cover w-full h-auto">
+                </div>
+                <div class="md:w-1/2 text-left">
+                    <h3 class="text-2xl font-bold text-deep-red mb-6">ANJANEYA GOLD COMPANY</h3>
+                    <div class="space-y-4 text-gray-700">
+                        <p class="flex items-start">
+                            <i class="fas fa-map-marker-alt text-secondary-bronze-gold text-xl mr-4 mt-1"></i>
+                            <a href="https://maps.google.com/?q=Anjaneya+Gold+Company+Nandini+Layout+Bengaluru"
+                                target="_blank" class="hover:underline">
+                                <span class="text-sm md:text-base leading-relaxed">
+                                    Registered Address: #20, 1st Floor, Sarasvathipuram main Road, opp. Sathya Shanthi
+                                    Ganapathi
+                                    Temple, Nandini layout, Bengaluru-560096, Karnataka.
+                                </span>
+                            </a>
+                        </p>
+                        <p class="flex items-center">
+                            <i class="fas fa-phone-alt text-secondary-bronze-gold text-xl mr-4"></i>
+                            <a href="tel:+919008477669" class="hover:underline font-semibold text-gray-800">+91 90084
+                                77669</a>
+                        </p>
+                        <p class="flex items-center">
+                            <i class="fas fa-envelope text-secondary-bronze-gold text-xl mr-4"></i>
+                            <a href="mailto:anjaneyagoldcompany@gmail.com"
+                                class="hover:underline text-gray-800">anjaneyagoldcompany@gmail.com</a>
+                        </p>
+                        <div class="flex items-center space-x-6 mt-4">
+                            <a href="https://www.instagram.com/anjaneyagoldcompany" target="_blank"
+                                class="icon-hover-effect">
+                                <i class="fab fa-instagram text-2xl" style="color: #E4405F;"></i>
+                            </a>
+                            <a href="https://www.facebook.com/share/1DzaPNTLWk/" target="_blank"
+                                class="icon-hover-effect">
+                                <i class="fab fa-facebook-f text-2xl" style="color: #1877F2;"></i>
+                            </a>
+                        </div>
+                        <div class="mt-8">
+                            <a href="tel:+919008477669"
+                                class="gold-bronze-gradient-bg text-white font-bold py-4 px-8 rounded-full shadow-lg btn-hover-effect flex items-center justify-center space-x-3 w-full max-w-sm">
+                                <i class="fas fa-phone-alt"></i>
+                                <span>Call Us</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-gray-900 text-white py-4">
+        <div
+            class="container mx-auto px-4 flex flex-col md:flex-row justify-between items-center text-center text-sm md:text-base">
+            <div class="mb-2 md:mb-0 md:text-left">
+                &copy; 2025 Anjaneya Gold Company
+            </div>
+            <div class="flex justify-center space-x-4 mb-2 md:mb-0">
+                <a href="#" id="privacy-policy-link"
+                    class="hover:text-secondary-bronze-gold transition duration-200 ease-in-out">Privacy Policy</a>
+                <a>|</a>
+                <a href="#" id="terms-of-service-link"
+                    class="hover:text-secondary-bronze-gold transition duration-200 ease-in-out">Terms of Service</a>
+            </div>
+            <div class="md:text-right">
+                Designed and Developed By Yash
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp FAB -->
+    <a href="https://wa.me/message/ZXLQLESURX6OK1" target="_blank" class="fab-whatsapp" aria-label="Chat on WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <div id="privacy-policy-modal" class="policy-modal-overlay">
+        <div class="policy-modal-content">
+            <span class="policy-modal-close" id="close-privacy-policy">&times;</span>
+            <h2 class="text-3xl font-bold text-deep-red mb-6">Privacy Policy</h2>
+            <p class="mb-4 text-gray-700">
+                At Anjaneya Gold Company, we are committed to protecting your privacy. This policy outlines how we
+                collect, use, and safeguard your personal information.
+            </p>
+            <h3 class="text-xl font-semibold text-deep-red mb-2">Information Collection</h3>
+            <p class="mb-4 text-gray-700">
+                We collect information you provide directly to us, such as your name, email address, phone number, and
+                details related to your gold transactions. We may also collect non-personal information like browser
+                type and IP address for analytical purposes.
+            </p>
+            <h3 class="text-xl font-semibold text-deep-red mb-2">Use of Information</h3>
+            <p class="mb-4 text-gray-700">
+                Your information is used to provide and improve our services, process transactions, communicate with
+                you, and comply with legal obligations. We do not sell or rent your personal information to third
+                parties.
+            </p>
+            <h3 class="text-xl font-semibold text-deep-red mb-2">Data Security</h3>
+            <p class="mb-4 text-gray-700">
+                We implement robust security measures to protect your data from unauthorized access, alteration,
+                disclosure, or destruction. This includes encryption, secure servers, and access controls.
+            </p>
+            <h3 class="text-xl font-semibold text-deep-red mb-2">Changes to Policy</h3>
+            <p class="text-gray-700">
+                We may update this privacy policy periodically. Any changes will be posted on this page, and we
+                encourage you to review it regularly.
+            </p>
+        </div>
+    </div>
+
+    <div id="terms-of-service-modal" class="policy-modal-overlay">
+        <div class="policy-modal-content">
+            <span class="policy-modal-close" id="close-terms-of-service">&times;</span>
+            <h2 class="text-3xl font-bold text-deep-red mb-6">Terms of Service</h2>
+            <p class="mb-4 text-gray-700">
+                Welcome to Anjaneya Gold Company. By using our services, you agree to comply with and be bound by the
+                following terms and conditions.
+            </p>
+            <h3 class="text-xl font-semibold text-deep-red mb-2">Service Agreement</h3>
+            <p class="mb-4 text-gray-700">
+                Our services include buying gold, releasing pledged gold, re-pledging, and mobile service for gold
+                transactions. All transactions are subject to verification of gold purity and weight using our certified
+                equipment.
+            </p>
+            <h3 class="text-xl font-semibold text-deep-red mb-2">Pricing and Payments</h3>
+            <p class="mb-4 text-gray-700">
+                Gold prices are based on current market rates. Payments for gold purchases or pledged gold release will
+                be transferred instantly to your verified bank account upon completion of all necessary documentation
+                and checks.
+            </p>
+            <h3 class="text-xl font-semibold text-deep-red mb-2">User Responsibilities</h3>
+            <p class="mb-4 text-gray-700">
+                Users must provide accurate and complete information for all transactions. Any misrepresentation or
+                fraudulent activity will result in immediate termination of services and may lead to legal legal action.
+            </p>
+            <h3 class="text-xl font-semibold text-deep-red mb-2">Limitation of Liability</h3>
+            <p class="text-gray-700">
+                Anjaneya Gold Company is not liable for any indirect, incidental, or consequential damages arising from
+                the use or inability to use our services.
+            </p>
+        </div>
+    </div>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const href = this.getAttribute('href');
+                // Only scroll if the href is not just "#" and refers to an actual ID
+                if (href && href !== '#') {
+                    const targetElement = document.querySelector(href);
+                    if (targetElement) {
+                        // Get the computed style of the --header-height variable
+                        const headerHeight = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--header-height'));
+
+                        // Calculate the target scroll position, accounting for the header
+                        const elementPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
+                        const offsetPosition = elementPosition - headerHeight;
+
+                        window.scrollTo({
+                            top: offsetPosition,
+                            behavior: 'smooth'
+                        });
+                    }
+                } else if (href === '#') {
+                    // If href is just "#", scroll to the top of the page (home section)
+                    document.querySelector('#home').scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Toggle mobile navigation
+        const navToggle = document.getElementById('nav-toggle');
+        const navContent = document.getElementById('nav-content');
+
+        navToggle.addEventListener('click', () => {
+            navContent.classList.toggle('hidden');
+        });
+
+        // Close mobile nav when a link is clicked
+        navContent.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (!navContent.classList.contains('hidden')) {
+                    navContent.classList.add('hidden');
+                }
+            });
+        });
+
+        // Intersection Observer for scroll animations
+        const faders = document.querySelectorAll('.fade-in, .slide-in-left, .slide-in-right');
+        const appearOptions = {
+            threshold: 0.2, // When 20% of the element is visible
+            rootMargin: "0px 0px -50px 0px" // Adjusts the viewport for intersection calculation
+        };
+
+        const appearOnScroll = new IntersectionObserver(function (entries, appearOnScroll) {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) {
+                    return;
+                } else {
+                    entry.target.classList.add('appear');
+                    appearOnScroll.unobserve(entry.target); // Stop observing once it has appeared
+                }
+            });
+        }, appearOptions);
+
+        faders.forEach(fader => {
+            appearOnScroll.observe(fader);
+        });
+
+        // Testimonial Carousel Logic
+        const carousel = document.getElementById('testimonial-carousel');
+        const prevButton = document.getElementById('prev-testimonial');
+        const nextButton = document.getElementById('next-testimonial');
+        const dots = document.querySelectorAll('.dot');
+        const testimonialElements = Array.from(carousel.children); // Get all testimonial cards
+        let currentIndex = 0;
+        const totalTestimonials = testimonialElements.length;
+
+        function updateCarousel() {
+            carousel.style.transform = `translateX(-${currentIndex * 100}%)`;
+
+            // Update dots
+            dots.forEach((dot, index) => {
+                dot.classList.remove('bg-gradient-red-primary'); /* Remove the new class if it was applied */
+                dot.classList.add('bg-gray-400');
+                if (index === currentIndex) {
+                    dot.classList.remove('bg-gray-400');
+                    dot.classList.add('bg-gradient-red-primary'); /* Apply the new gradient class */
+                }
+            });
+
+            // Re-apply animation to the current testimonial card
+            testimonialElements.forEach((card, index) => {
+                card.classList.remove('appear'); // Remove appear from all
+                if (index === currentIndex) {
+                    // A small timeout to allow the 'appear' class to be removed before re-adding
+                    setTimeout(() => {
+                        card.classList.add('appear');
+                    }, 50);
+                }
+            });
+        }
+
+        prevButton.addEventListener('click', () => {
+            currentIndex = (currentIndex === 0) ? totalTestimonials - 1 : currentIndex - 1;
+            updateCarousel();
+        });
+
+        nextButton.addEventListener('click', () => {
+            currentIndex = (currentIndex === totalTestimonials - 1) ? 0 : currentIndex + 1;
+            updateCarousel();
+        });
+
+        dots.forEach(dot => {
+            dot.addEventListener('click', (e) => {
+                currentIndex = parseInt(e.target.dataset.index);
+                updateCarousel();
+            });
+        });
+
+        // Initialize carousel on load
+        updateCarousel();
+
+
+        // Policy Modal Logic
+        const privacyPolicyLink = document.getElementById('privacy-policy-link');
+        const termsOfServiceLink = document.getElementById('terms-of-service-link');
+        const privacyPolicyModal = document.getElementById('privacy-policy-modal');
+        const termsOfServiceModal = document.getElementById('terms-of-service-modal');
+        const closePrivacyPolicyBtn = document.getElementById('close-privacy-policy');
+        const closeTermsOfServiceBtn = document.getElementById('close-terms-of-service');
+
+        privacyPolicyLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            privacyPolicyModal.classList.add('open');
+        });
+
+        termsOfServiceLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            termsOfServiceModal.classList.add('open');
+        });
+
+        closePrivacyPolicyBtn.addEventListener('click', () => {
+            privacyPolicyModal.classList.remove('open');
+        });
+
+        closeTermsOfServiceBtn.addEventListener('click', () => {
+            termsOfServiceModal.classList.remove('open');
+        });
+
+        // Close modals if clicked outside content
+        privacyPolicyModal.addEventListener('click', (e) => {
+            if (e.target === privacyPolicyModal) {
+                privacyPolicyModal.classList.remove('open');
+            }
+        });
+
+        termsOfServiceModal.addEventListener('click', (e) => {
+            if (e.target === termsOfServiceModal) {
+                termsOfServiceModal.classList.remove('open');
+            }
+        });
+
+        // FAQ Accordion Logic
+        document.querySelectorAll('.faq-question').forEach(button => {
+            button.addEventListener('click', () => {
+                const faqItem = button.closest('.faq-item');
+                const answer = faqItem.querySelector('.faq-answer');
+                const arrowIcon = button.querySelector('.arrow-icon');
+
+                // Close other open FAQs
+                document.querySelectorAll('.faq-item').forEach(item => {
+                    if (item !== faqItem) {
+                        item.querySelector('.faq-question').classList.remove('active');
+                        item.querySelector('.faq-answer').classList.remove('open');
+                        item.querySelector('.faq-answer').style.maxHeight = null;
+                        item.querySelector('.arrow-icon').classList.remove('active');
+                    }
+                });
+
+                // Toggle current FAQ
+                button.classList.toggle('active');
+                arrowIcon.classList.toggle('active');
+                if (answer.classList.contains('open')) {
+                    answer.classList.remove('open');
+                    answer.style.maxHeight = null;
+                } else {
+                    answer.classList.add('open');
+                    // Set max-height to scrollHeight to allow content to expand fully
+                    answer.style.maxHeight = answer.scrollHeight + "px";
+                }
+            });
+        });
+
+        // Flip Card Touch Support
+        document.querySelectorAll('.flip-card').forEach(card => {
+            card.addEventListener('click', function () {
+                const inner = this.querySelector('.flip-card-inner');
+                if (inner.style.transform === 'rotateY(180deg)') {
+                    inner.style.transform = 'rotateY(0deg)';
+                } else {
+                    inner.style.transform = 'rotateY(180deg)';
+                }
+            });
+        });
+
+        // Gold Rate Auto-Scrolling Logic
+        const goldRateCarouselContainer = document.getElementById('gold-rate-carousel-container');
+        const goldRate24ctValue = document.getElementById('gold-rate-24ct-value');
+        const lastUpdatedGoldRate = document.getElementById('last-updated-gold-rate');
+
+
+        const goldRates = [
+            { ct: '24', price: 11993 } // Only 24ct retained
+        ];
+
+
+        let currentGoldRateIndex = 0;
+        const itemHeight = 200;
+        const totalGoldRates = goldRates.length;
+
+
+        function updateGoldRatesDisplay() {
+            goldRate24ctValue.textContent = `₹ ${goldRates[0].price}/-`;
+            document.getElementById('gold-rate-24ct-value-duplicate').textContent = `₹ ${goldRates[0].price}/-`;
+            lastUpdatedGoldRate.textContent = new Date().toLocaleString('en-IN', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            });
+        }
+
+
+        function autoScrollGoldRates() {
+            currentGoldRateIndex++;
+            goldRateCarouselContainer.style.transition = 'transform 0.5s ease-in-out';
+            goldRateCarouselContainer.style.transform = `translateY(-${currentGoldRateIndex * itemHeight}px)`;
+
+
+            if (currentGoldRateIndex >= totalGoldRates) {
+                setTimeout(() => {
+                    goldRateCarouselContainer.style.transition = 'none';
+                    currentGoldRateIndex = 0;
+                    goldRateCarouselContainer.style.transform = `translateY(-${currentGoldRateIndex * itemHeight}px)`;
+                    setTimeout(() => {
+                        goldRateCarouselContainer.style.transition = 'transform 0.5s ease-in-out';
+                    }, 50);
+                }, 500);
+            }
+
+
+            updateGoldRatesDisplay();
+        }
+
+
+        updateGoldRatesDisplay();
+        setInterval(autoScrollGoldRates, 3000);
+    </script>
+</body>
+
+</html>
