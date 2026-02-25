@@ -22,13 +22,13 @@
             --gradient-gold-to-bronze: linear-gradient(to right, var(--color-dark-gold), var(--color-light-gold));
             --gradient-dark-red: linear-gradient(to right, #660000, var(--color-deep-red));
 
-            --header-height: 80px;
+            --header-height: 88px;
             /* Adjusted base height */
         }
 
-        @media (min-width: 1024px) {
+        @media (max-width: 768px) {
             :root {
-                --header-height: 100px;
+                --header-height: 75px;
             }
         }
 
@@ -460,16 +460,16 @@
             scroll-margin-top: var(--header-height);
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         /* Transparent Header Styles */
         .transparent-header {
-            background-color: rgba(233, 227, 227, 0.445);
-            /* Slightly opaque white */
-            backdrop-filter: black(10px);
-            /* Frosted glass effect */
-            -webkit-backdrop-filter: black(10px);
-            /* For Safari */
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            /* Subtle shadow */
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
         }
 
         /* Custom style for the services section background */
@@ -599,6 +599,71 @@
             color: #777;
             margin-top: 15px;
         }
+
+        @media (max-width: 768px) {
+        header h1 {
+            font-size: 28px !important;
+        }
+
+        header h2 {
+            font-size: 26px !important;
+        }
+
+        header p {
+            font-size: 16px !important;
+        }
+    }
+
+    /* ===== MOBILE FIX FOR SMALL DEVICES ===== */
+        @media (max-width: 480px) {
+
+        /* Reduce header brand size */
+        nav a span {
+            font-size: 20px !important;
+        }
+
+        /* Reduce hero main heading */
+        header h1 {
+            font-size: 30px !important;
+            line-height: 1.2 !important;
+            padding: 0 10px;
+        }
+
+        /* Reduce secondary heading */
+        header h2 {
+            font-size: 22px !important;
+        }
+
+        /* Reduce paragraph size */
+        header p {
+            font-size: 15px !important;
+            padding: 0 12px;
+        }
+
+        /* Fix list spacing */
+        header ul {
+            font-size: 14px !important;
+            padding: 0 10px;
+        }
+
+        /* Reduce logo size */
+        header img {
+            height: 80px !important;
+            width: 80px !important;
+        }
+
+        /* Reduce header height variable */
+        :root {
+            --header-height: 65px;
+        }
+
+        /* Fix sticky header transparency */
+        .transparent-header {
+            background-color: rgba(255, 255, 255, 0.95) !important;
+            backdrop-filter: none !important;
+        }
+
+    }
     </style>
 </head>
 
@@ -1310,35 +1375,6 @@
     </div>
 
     <script>
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const href = this.getAttribute('href');
-                // Only scroll if the href is not just "#" and refers to an actual ID
-                if (href && href !== '#') {
-                    const targetElement = document.querySelector(href);
-                    if (targetElement) {
-                        // Get the computed style of the --header-height variable
-                        const headerHeight = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--header-height'));
-
-                        // Calculate the target scroll position, accounting for the header
-                        const elementPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
-                        const offsetPosition = elementPosition - headerHeight;
-
-                        window.scrollTo({
-                            top: offsetPosition,
-                            behavior: 'smooth'
-                        });
-                    }
-                } else if (href === '#') {
-                    // If href is just "#", scroll to the top of the page (home section)
-                    document.querySelector('#home').scrollIntoView({
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
 
         // Toggle mobile navigation
         const navToggle = document.getElementById('nav-toggle');
